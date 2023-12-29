@@ -26,14 +26,13 @@ class _ScannerState extends State<Scanner> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.black.withOpacity(0.5),
-        appBar: AppBar(
-          backgroundColor: CustomTheme.primaryColor,
-          title: const Text(appName),
-          centerTitle: true,
-          titleTextStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-        ),
-        floatingActionButton: FloatingActionButton.extended(
+      appBar: AppBar(
+        backgroundColor: CustomTheme.primaryColor,
+        title: const Text(appName),
+        centerTitle: true,
+        titleTextStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
           icon: const Icon(Icons.history),
           label: const Text("History"),
           backgroundColor: CustomTheme.primaryColor,
@@ -51,12 +50,12 @@ class _ScannerState extends State<Scanner> {
             });
           },
         ),
-        body: SafeArea(
+      body: SafeArea(
           child: MobileScanner(
             allowDuplicates: false,
             onDetect: onDetectBarcode,
           ),
-        )
+        ),
     );
   }
 
@@ -105,7 +104,6 @@ class _ScannerState extends State<Scanner> {
         );
       },
     );
-
     setState(() {
       popUpOpened = false;
     });

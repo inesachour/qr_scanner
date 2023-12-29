@@ -47,7 +47,7 @@ class _ScanHistoryScreenState extends State<ScanHistoryScreen> {
         child: isLoading
             ? const Center(child: CircularProgressIndicator(color: CustomTheme.secondaryBackgroundColor,))
             : qrCodes == null || qrCodes!.isEmpty
-              ? Center(child: Text("Your history is empty", style: TextStyle(color: CustomTheme.secondaryBackgroundColor, fontSize: 22),))
+              ? const Center(child: Text("Your history is empty", style: TextStyle(color: CustomTheme.secondaryBackgroundColor, fontSize: 22,),))
               : Column(
                 children: [
                   SizedBox(
@@ -55,7 +55,7 @@ class _ScanHistoryScreenState extends State<ScanHistoryScreen> {
                   ),
                   Container(
                     height: height *0.05,
-                    child: Text(
+                    child: const Text(
                       "Scanning History",
                       style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
@@ -65,7 +65,7 @@ class _ScanHistoryScreenState extends State<ScanHistoryScreen> {
                   ),
                   Container(
                     height: height *0.05,
-                    child: Text(
+                    child: const Text(
                       "Here you can find the history of\nall your scanned QR codes",
                       style: TextStyle(fontSize: 12),
                     ),
@@ -76,35 +76,35 @@ class _ScanHistoryScreenState extends State<ScanHistoryScreen> {
                   Container(
                     height: height *0.6,
                     child: ListView.builder(
-                      padding: EdgeInsets.symmetric(horizontal: 40),
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
                       itemBuilder: (BuildContext context, int index){
                         return Container(
-                          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 15),
-                          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+                          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                           decoration: BoxDecoration(
                             border: Border.all(color: CustomTheme.secondaryBackgroundColor),
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderRadius: const BorderRadius.all(Radius.circular(10)),
                             color: CustomTheme.secondaryBackgroundColor,
                           ),
                           child: Row(
                             children: [
-                              Icon(Icons.qr_code_2, color: CustomTheme.primaryColor,),
-                              SizedBox(width: 10),
+                              const Icon(Icons.qr_code_2, color: CustomTheme.primaryColor,),
+                              const SizedBox(width: 10),
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       qrCodes![index].text,
-                                      style: TextStyle(fontSize: 16),
+                                      style: const TextStyle(fontSize: 16),
                                       overflow: TextOverflow.ellipsis,
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 5,
                                     ),
                                     Text(
                                       DateFormat('dd MMMM yyyy HH:mm').format(qrCodes![index].creationTime),
-                                      style: TextStyle(color: Colors.grey, fontSize: 12),
+                                      style: const TextStyle(color: Colors.grey, fontSize: 12),
                                     ),
                                   ],
                                 ),
