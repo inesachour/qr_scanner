@@ -109,6 +109,9 @@ class _ScannerState extends State<Scanner> {
         );
       },
     );
+
+    await Future.delayed(const Duration(seconds: 1));
+
     setState(() {
       popUpOpened = false;
     });
