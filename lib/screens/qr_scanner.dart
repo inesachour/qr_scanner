@@ -75,7 +75,6 @@ class _ScannerState extends State<Scanner> {
     );
     await QrCodeDatabase.instance.create(qrCode);
 
-    // ignore: use_build_context_synchronously
     await showDialog(
       context: context,
       builder: (BuildContext context) {
