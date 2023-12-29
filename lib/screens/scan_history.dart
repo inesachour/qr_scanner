@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:qr_scanner/constants/constants.dart';
+import 'package:qr_scanner/shared/constants.dart';
 import 'package:qr_scanner/database/qrcode_database.dart';
 import 'package:qr_scanner/models/qrcode.dart';
+import 'package:qr_scanner/shared/utlis.dart';
 
 class ScanHistoryScreen extends StatefulWidget {
   const ScanHistoryScreen({super.key});
@@ -115,6 +117,13 @@ class _ScanHistoryScreenState extends State<ScanHistoryScreen> {
                                     ),
                                   ],
                                 ),
+                              ),
+                              const SizedBox(width: 10),
+                              IconButton(
+                                onPressed: (){
+                                  copyQrCodeText(context: context, text: qrCodes![index].text);
+                                },
+                                icon: const Icon(Icons.copy, color: Colors.grey,),
                               ),
                             ],
                           ),

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import 'package:qr_scanner/constants/constants.dart';
+import 'package:qr_scanner/shared/constants.dart';
 import 'package:qr_scanner/database/qrcode_database.dart';
 import 'package:qr_scanner/models/qrcode.dart';
 import 'package:qr_scanner/screens/scan_history.dart';
+import 'package:qr_scanner/shared/utlis.dart';
 
 class Scanner extends StatefulWidget {
   const Scanner({Key? key}) : super(key: key);
@@ -96,8 +97,7 @@ class _ScannerState extends State<Scanner> {
               const SizedBox(height: 5,),
               ElevatedButton(
                 onPressed: (){
-                  Clipboard.setData(ClipboardData(text: qrCode.text));
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Text copied!'),));
+                  copyQrCodeText(context: context, text: qrCode.text);
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(CustomTheme.primaryColor,),
