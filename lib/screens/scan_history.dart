@@ -21,6 +21,11 @@ class _ScanHistoryScreenState extends State<ScanHistoryScreen> {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   getAllQrCodes() async {
     setState(() => isLoading = true);
     qrCodes = await QrCodeDatabase.instance.readAllQrCodes();
@@ -29,11 +34,6 @@ class _ScanHistoryScreenState extends State<ScanHistoryScreen> {
 
   @override
   Widget build(BuildContext context) {
-
-    if(qrCodes == null || qrCodes!.isEmpty){
-      getAllQrCodes();
-    }
-
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
@@ -47,7 +47,7 @@ class _ScanHistoryScreenState extends State<ScanHistoryScreen> {
         child: isLoading
             ? const Center(child: CircularProgressIndicator(color: CustomTheme.primaryColor,))
             : qrCodes == null || qrCodes!.isEmpty
-              ? const Center(child: Text("Your history is empty", style: TextStyle(color: CustomTheme.primaryColor, fontSize: 22,),))
+              ? const Center(child: Text("Your history is empty", style: TextStyle(color: CustomTheme.primaryColor, fontSize: 26, fontWeight: FontWeight.bold),))
               : Column(
                 children: [
                   SizedBox(
