@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:qr_scanner/database/qrcode_database.dart';
 import 'package:qr_scanner/models/qrcode.dart';
 
@@ -46,6 +47,7 @@ class _ScanHistoryScreenState extends State<ScanHistoryScreen> {
           itemBuilder: (BuildContext context, int index){
             return ListTile(
               title: Text(qrCodes[index].text),
+              subtitle: Text(DateFormat('yyyy-MM-dd HH:mm').format(qrCodes[index].creationTime)),
             );
           },
           itemCount: qrCodes.length,
