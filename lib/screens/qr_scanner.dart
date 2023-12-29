@@ -48,7 +48,6 @@ class _ScannerState extends State<Scanner> {
   }
 
   void onDetectBarcode(Barcode barcode, MobileScannerArguments? args) async {
-    print("yella ${barcode.rawValue}");
     QrCode qrCode = QrCode(text: barcode.rawValue ?? "test", creationTime: DateTime.now());
     await QrCodeDatabase.instance.create(qrCode);
   }

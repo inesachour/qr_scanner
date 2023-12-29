@@ -27,14 +27,7 @@ class _ScanHistoryScreenState extends State<ScanHistoryScreen> {
 
   getAllQrCodes() async {
     setState(() => isLoading = true);
-    print("done");
-    try{
-      qrCodes = await QrCodeDatabase.instance.readAllQrCodes();
-
-    }
-    catch(e){
-      print("ya mama $e");
-    }
+    qrCodes = await QrCodeDatabase.instance.readAllQrCodes();
     setState(() => isLoading = false);
   }
 
