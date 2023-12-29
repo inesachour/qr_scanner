@@ -110,7 +110,7 @@ class _ScannerState extends State<Scanner> {
       },
     );
 
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 2));
 
     setState(() {
       popUpOpened = false;
