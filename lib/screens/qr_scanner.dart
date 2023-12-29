@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:qr_scanner/database/qrcode_database.dart';
+import 'package:qr_scanner/models/qrcode.dart';
 import 'package:qr_scanner/screens/scan_history.dart';
 
 class Scanner extends StatefulWidget {
@@ -45,8 +47,10 @@ class _ScannerState extends State<Scanner> {
     );
   }
 
-  void onDetectBarcode(Barcode barcode, MobileScannerArguments? args){
-    print(barcode);
+  void onDetectBarcode(Barcode barcode, MobileScannerArguments? args) async {
+    print("yella ${barcode.rawValue}");
+    QrCode qrCode = QrCode(text: barcode.rawValue ?? "test", creationTime: DateTime.now());
+    await QrCodeDatabase.instance.create(qrCode);
   }
 
 }

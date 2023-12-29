@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:qr_scanner/database/qrcode_database.dart';
+import 'package:qr_scanner/models/qrcode.dart';
 
 class ScanHistoryScreen extends StatefulWidget {
   const ScanHistoryScreen({super.key});
@@ -8,6 +10,34 @@ class ScanHistoryScreen extends StatefulWidget {
 }
 
 class _ScanHistoryScreenState extends State<ScanHistoryScreen> {
+  late List<QrCode> qrCodes;
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    getAllQrCodes();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    QrCodeDatabase.instance.close();
+    super.dispose();
+  }
+
+  getAllQrCodes() async {
+    setState(() => isLoading = true);
+    print("done");
+    try{
+      qrCodes = await QrCodeDatabase.instance.readAllQrCodes();
+
+    }
+    catch(e){
+      print("ya mama $e");
+    }
+    setState(() => isLoading = false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,8 +45,11 @@ class _ScanHistoryScreenState extends State<ScanHistoryScreen> {
 
       ),
       body: SafeArea(
-        child: Container(
-        ),
+        child: isLoading
+            ? const Center(child: CircularProgressIndicator())
+            : qrCodes.isEmpty
+              ? Text("Empty")
+              : Container(),
       ),
     );
   }
