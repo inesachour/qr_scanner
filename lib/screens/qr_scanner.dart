@@ -7,14 +7,14 @@ import 'package:qr_scanner/models/qrcode.dart';
 import 'package:qr_scanner/screens/scan_history.dart';
 import 'package:qr_scanner/shared/utlis.dart';
 
-class Scanner extends StatefulWidget {
-  const Scanner({Key? key}) : super(key: key);
+class QrScannerScreen extends StatefulWidget {
+  const QrScannerScreen({Key? key}) : super(key: key);
 
   @override
-  State<Scanner> createState() => _ScannerState();
+  State<QrScannerScreen> createState() => _QrScannerScreenState();
 }
 
-class _ScannerState extends State<Scanner> {
+class _QrScannerScreenState extends State<QrScannerScreen> {
   bool popUpOpened = false;
   bool historyScreenActive = false;
 
