@@ -14,6 +14,12 @@ class Scanner extends StatefulWidget {
 class _ScannerState extends State<Scanner> {
 
   @override
+  void dispose() {
+    QrCodeDatabase.instance.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.black.withOpacity(0.5),
