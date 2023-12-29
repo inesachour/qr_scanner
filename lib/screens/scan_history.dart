@@ -78,7 +78,7 @@ class _ScanHistoryScreenState extends State<ScanHistoryScreen> {
                   Container(
                     height: height *0.6,
                     child: ListView.builder(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
                       itemBuilder: (BuildContext context, int index){
                         return Container(
                           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
