@@ -42,7 +42,12 @@ class _ScanHistoryScreenState extends State<ScanHistoryScreen> {
             ? const Center(child: CircularProgressIndicator())
             : qrCodes.isEmpty
               ? Text("Empty")
-              : Container(),
+              : ListView.builder(
+          itemBuilder: (BuildContext context, int index){
+            return Text(qrCodes[index].text);
+          },
+          itemCount: qrCodes.length,
+        ),
       ),
     );
   }
