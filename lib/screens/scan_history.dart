@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:qr_scanner/constants/custom_theme.dart';
 import 'package:qr_scanner/database/qrcode_database.dart';
 import 'package:qr_scanner/models/qrcode.dart';
 
@@ -37,13 +38,13 @@ class _ScanHistoryScreenState extends State<ScanHistoryScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFFE7D55),
+        backgroundColor: CustomTheme.primaryColor,
       ),
       body: SafeArea(
         child: isLoading
-            ? const Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator(color: CustomTheme.secondaryBackgroundColor,))
             : qrCodes == null || qrCodes!.isEmpty
-              ? Center(child: Text("Your history is empty"))
+              ? Center(child: Text("Your history is empty", style: TextStyle(color: CustomTheme.secondaryBackgroundColor, fontSize: 22),))
               : Column(
                 children: [
                   SizedBox(
@@ -78,13 +79,13 @@ class _ScanHistoryScreenState extends State<ScanHistoryScreen> {
                           padding: EdgeInsets.symmetric(horizontal: 12, vertical: 15),
                           margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                           decoration: BoxDecoration(
-                            border: Border.all(color: Color(0xFFF4F4F4)),
+                            border: Border.all(color: CustomTheme.secondaryBackgroundColor),
                             borderRadius: BorderRadius.all(Radius.circular(10)),
-                            color: Color(0xFFF4F4F4),
+                            color: CustomTheme.secondaryBackgroundColor,
                           ),
                           child: Row(
                             children: [
-                              Icon(Icons.qr_code_2, color: Color(0xFFFE7D55),),
+                              Icon(Icons.qr_code_2, color: CustomTheme.primaryColor,),
                               SizedBox(width: 10),
                               Expanded(
                                 child: Column(
