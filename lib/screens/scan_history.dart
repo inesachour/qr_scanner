@@ -44,7 +44,9 @@ class _ScanHistoryScreenState extends State<ScanHistoryScreen> {
               ? Text("Empty")
               : ListView.builder(
           itemBuilder: (BuildContext context, int index){
-            return Text(qrCodes[index].text);
+            return ListTile(
+              title: Text(qrCodes[index].text),
+            );
           },
           itemCount: qrCodes.length,
         ),
