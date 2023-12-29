@@ -41,7 +41,7 @@ class QrCodeDatabase{
 
   Future<List<QrCode>> readAllQrCodes() async {
     final db = await instance.database;
-    final result = await db.query(tableQrCodes);
+    final result = await db.query(tableQrCodes, orderBy: "${QrCodeFields.creationTime} DESC");
     return result.map((json) => QrCode.fromJson(json)).toList();
   }
 
