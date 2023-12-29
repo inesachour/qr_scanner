@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:qr_scanner/constants/custom_theme.dart';
+import 'package:qr_scanner/constants/constants.dart';
 import 'package:qr_scanner/database/qrcode_database.dart';
 import 'package:qr_scanner/models/qrcode.dart';
 
@@ -39,6 +39,9 @@ class _ScanHistoryScreenState extends State<ScanHistoryScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: CustomTheme.primaryColor,
+        title: const Text(appName),
+        centerTitle: true,
+        titleTextStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
       ),
       body: SafeArea(
         child: isLoading

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import 'package:qr_scanner/constants/custom_theme.dart';
+import 'package:qr_scanner/constants/constants.dart';
 import 'package:qr_scanner/database/qrcode_database.dart';
 import 'package:qr_scanner/models/qrcode.dart';
 import 'package:qr_scanner/screens/scan_history.dart';
@@ -15,6 +15,7 @@ class Scanner extends StatefulWidget {
 
 class _ScannerState extends State<Scanner> {
   bool popUpOpened = false;
+  bool historyScreenActive = false;
 
   @override
   void dispose() {
@@ -28,17 +29,26 @@ class _ScannerState extends State<Scanner> {
         backgroundColor: Colors.black.withOpacity(0.5),
         appBar: AppBar(
           backgroundColor: CustomTheme.primaryColor,
-          title: Text("Scanner", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+          title: const Text(appName),
+          centerTitle: true,
+          titleTextStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         ),
         floatingActionButton: FloatingActionButton.extended(
           icon: const Icon(Icons.history),
           label: const Text("History"),
           backgroundColor: CustomTheme.primaryColor,
           onPressed: (){
+            setState(() {
+              historyScreenActive = true;
+            });
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const ScanHistoryScreen()),
-            );
+            ).then((value) {
+              setState(() {
+                historyScreenActive = false;
+              });
+            });
           },
         ),
         body: SafeArea(
@@ -51,7 +61,7 @@ class _ScannerState extends State<Scanner> {
   }
 
   void onDetectBarcode(Barcode barcode, MobileScannerArguments? args) async {
-    if(barcode.rawValue == null || barcode.rawValue!.isEmpty || popUpOpened) {
+    if(barcode.rawValue == null || barcode.rawValue!.isEmpty || popUpOpened || historyScreenActive) {
       return;
     }
 
