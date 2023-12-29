@@ -11,7 +11,7 @@ class ScanHistoryScreen extends StatefulWidget {
 }
 
 class _ScanHistoryScreenState extends State<ScanHistoryScreen> {
-  late List<QrCode> qrCodes;
+  List<QrCode>? qrCodes;
   bool isLoading = true;
 
   @override
@@ -34,23 +34,47 @@ class _ScanHistoryScreenState extends State<ScanHistoryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
 
-      ),
+    if(qrCodes == null || qrCodes!.isEmpty){
+      getAllQrCodes();
+    }
+
+    return Scaffold(
+      appBar: AppBar(),
       body: SafeArea(
         child: isLoading
             ? const Center(child: CircularProgressIndicator())
-            : qrCodes.isEmpty
-              ? Text("Empty")
+            : qrCodes == null || qrCodes!.isEmpty
+              ? Center(child: Text("Your history is empty"))
               : ListView.builder(
+          padding: EdgeInsets.all(5),
           itemBuilder: (BuildContext context, int index){
-            return ListTile(
-              title: Text(qrCodes[index].text),
-              subtitle: Text(DateFormat('yyyy-MM-dd HH:mm').format(qrCodes[index].creationTime)),
+            return Container(
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+              margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    qrCodes![index].text,
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    DateFormat('yyyy-MM-dd HH:mm').format(qrCodes![index].creationTime),
+                    style: TextStyle(color: Colors.grey, fontSize: 12),
+                  ),
+                ],
+              ),
             );
           },
-          itemCount: qrCodes.length,
+          itemCount: qrCodes!.length,
         ),
       ),
     );
