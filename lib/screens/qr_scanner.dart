@@ -44,7 +44,8 @@ class _ScannerState extends State<Scanner> {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const ScanHistoryScreen()),
-            ).then((value) {
+            ).then((value) async {
+              await Future.delayed(const Duration(seconds: 2));
               setState(() {
                 historyScreenActive = false;
               });
