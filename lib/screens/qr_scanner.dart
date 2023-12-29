@@ -68,7 +68,11 @@ class _ScannerState extends State<Scanner> {
       popUpOpened = true;
     });
 
-    QrCode qrCode = QrCode(text: barcode.rawValue!, creationTime: DateTime.now());
+    QrCode qrCode = QrCode(
+      text: barcode.rawValue!.trim(),
+      creationTime: DateTime.now(),
+      type: barcode.type.name
+    );
     await QrCodeDatabase.instance.create(qrCode);
 
     // ignore: use_build_context_synchronously
@@ -88,6 +92,8 @@ class _ScannerState extends State<Scanner> {
               const Icon(Icons.qr_code, size: 50, color: CustomTheme.primaryColor,),
               const SizedBox(height: 5,),
               Text(qrCode.text),
+              const SizedBox(height: 5,),
+              Text("Type: ${qrCode.type}", style: const TextStyle(fontSize: 12, color: Colors.grey),),
               const SizedBox(height: 5,),
               ElevatedButton(
                 onPressed: (){

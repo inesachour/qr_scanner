@@ -45,9 +45,9 @@ class _ScanHistoryScreenState extends State<ScanHistoryScreen> {
       ),
       body: SafeArea(
         child: isLoading
-            ? const Center(child: CircularProgressIndicator(color: CustomTheme.secondaryBackgroundColor,))
+            ? const Center(child: CircularProgressIndicator(color: CustomTheme.primaryColor,))
             : qrCodes == null || qrCodes!.isEmpty
-              ? const Center(child: Text("Your history is empty", style: TextStyle(color: CustomTheme.secondaryBackgroundColor, fontSize: 22,),))
+              ? const Center(child: Text("Your history is empty", style: TextStyle(color: CustomTheme.primaryColor, fontSize: 22,),))
               : Column(
                 children: [
                   SizedBox(
@@ -76,7 +76,7 @@ class _ScanHistoryScreenState extends State<ScanHistoryScreen> {
                   Container(
                     height: height *0.6,
                     child: ListView.builder(
-                      padding: const EdgeInsets.symmetric(horizontal: 40),
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
                       itemBuilder: (BuildContext context, int index){
                         return Container(
                           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
@@ -98,6 +98,13 @@ class _ScanHistoryScreenState extends State<ScanHistoryScreen> {
                                       qrCodes![index].text,
                                       style: const TextStyle(fontSize: 16),
                                       overflow: TextOverflow.ellipsis,
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      qrCodes![index].type.toUpperCase(),
+                                      style: const TextStyle(color: Colors.grey, fontSize: 12),
                                     ),
                                     const SizedBox(
                                       height: 5,

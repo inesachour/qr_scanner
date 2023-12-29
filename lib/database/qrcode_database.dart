@@ -27,7 +27,8 @@ class QrCodeDatabase{
     CREATE TABLE $tableQrCodes (
     ${QrCodeFields.id} INTEGER PRIMARY KEY AUTOINCREMENT,
     ${QrCodeFields.text} TEXT,
-    ${QrCodeFields.creationTime} TEXT NOT NULL
+    ${QrCodeFields.creationTime} TEXT NOT NULL,
+    ${QrCodeFields.type} TEXT NOT NULL
     )
     ''');
   }
